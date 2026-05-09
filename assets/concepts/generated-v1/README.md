@@ -15,8 +15,8 @@ The direction is useful for feature coverage, but it should not be treated as th
 - `04-mentor-matching.png` - deprecated mentor and buddy matching concept
 - `05-ai-assistant.png` - AI assistant concept
 - `06-support-discovery.png` - support-service discovery concept
-- `07-partner-sponsor-profile.png` - partner/sponsor profile concept
+- `07-partner-sponsor-profile.png` - deprecated partner/sponsor profile concept, superseded by premium subscription
 
 ## Next Direction
 
-Use these only as a backup for feature inventory. The next design pass should focus on onboarding, events, the student forum, job board finding, support-service discovery, partner/sponsor profiles and the AI Guide. It should follow `design/style-direction.md` and should be produced as a sharper web/product design system, preferably through an HTML/CSS v0 concept before generating more static images.
+Use these only as a backup for feature inventory. The next design pass should focus on onboarding, events, the student forum, job board finding, support-service discovery, premium subscription plans and the AI Guide. It should follow `design/style-direction.md` and should be produced as a sharper web/product design system, preferably through an HTML/CSS v0 concept before generating more static images.

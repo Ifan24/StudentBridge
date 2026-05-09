@@ -32,6 +32,7 @@ StudentBridge is a mobile/web app concept for international students in Australi
 
 - `assets/studentbridge-logo.jpeg`
 - `research/app_feature_research.md`
+- `docs/implementation-plan.md`
 - `AGENTS.md`
 
 ## Tech Direction
@@ -49,5 +50,5 @@ StudentBridge is a mobile/web app concept for international students in Australi
 - Student forum
 - Job board finding
 - Support-service discovery
-- Partner/sponsor profiles
+- Premium subscription plans
 - AI StudentBridge assistant

@@ -11,7 +11,7 @@ Use this folder for app development or prototype planning. In a Next.js App Rout
 - verified employer sessions
 - volunteering and industry experience listings
 - support-service discovery
-- partner and sponsor profiles
+- premium subscription and AI usage limits
 - AI onboarding, recommendations and networking helper
 - safety, verification and privacy controls
 
@@ -24,7 +24,7 @@ Use this folder for app development or prototype planning. In a Next.js App Rout
 - Career networking
 - Support services
 - AI assistant
-- Partner portal
+- Premium subscription
 - Profile and privacy settings
 
 ## Brand asset

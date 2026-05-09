@@ -25,7 +25,7 @@ Prioritise:
 - student forum discussions
 - job board finding
 - support-service discovery
-- sponsor or partner profiles
+- premium subscription upgrades
 - AI assistance for recommendations, onboarding and networking confidence
 
 Avoid:
@@ -49,7 +49,7 @@ Use:
 
 Keep secrets server-side. Do not expose API keys through `NEXT_PUBLIC_` variables.
 
-Prefer simple seeded data for the prototype until the core screens are stable. When adding a database, keep the data model aligned with users, profiles, events, organisations, forum topics, forum posts, comments, job opportunities, saved items, registrations and reports.
+Prefer simple seeded data for the prototype until the core screens are stable. When adding a database, keep the data model aligned with users, profiles, event cache records, forum topics, forum posts, comments, votes, job opportunities, support resources, saved items, reports, AI interactions, subscription plans and user subscriptions.
 
 ## AI Direction
 
@@ -59,7 +59,7 @@ AI features should be practical and bounded:
 - event recommendations from known app data
 - networking introduction/pitch helper
 - support-service router with official links
-- event tagging or sponsor quality checks
+- event tagging or premium job-search quality checks
 
 AI should not provide legal, migration, medical or financial advice. For high-stakes questions, route users to official resources.
 
@@ -75,8 +75,8 @@ Design for trust from the start:
 - forum moderation and community standards
 - no exact student address sharing
 - private profile fields by default
-- aggregated sponsor analytics only
-- moderation path for reported users, events and organisations
+- no resale of student data to advertisers, employers or data brokers
+- moderation path for reported users, forum posts, comments, jobs and events
 
 ## Git Workflow
 

@@ -18,7 +18,7 @@ It should not feel like:
 - a pile of rounded cards with decorative icons
 - a fake analytics product
 - a social app pretending to solve everything with chat
-- a sponsor advertising portal
+- a sponsor advertising portal or a paywall trap
 
 ## What Was Wrong With v1
 
@@ -91,7 +91,7 @@ Avoid:
 
 - gradient blobs, orbs and glass panels
 - left-border accent cards
-- fake KPI blocks unless the screen is genuinely about sponsor performance
+- fake KPI blocks unless the screen is genuinely about subscription usage
 - logo walls, testimonial blocks or fabricated social proof
 - generic illustration scenes
 - icon spam
@@ -100,7 +100,7 @@ Avoid:
 
 Desktop app shell:
 
-- Left navigation: Home, Events, Forum, Jobs, Support, Partners, AI Guide.
+- Left navigation: Home, Events, Forum, Jobs, Support, AI Guide, Premium.
 - Top utility row: city selector, search, saved items, profile.
 - Main workspace: one primary task per route.
 - Right context panel only when it helps the task, such as a first-week plan, saved shortlist or official-source notes.
@@ -117,7 +117,7 @@ Composition:
 - Prefer rows, rails, timelines and split panes over repeated card grids.
 - Give each route a distinct structure so the product feels authored.
 - Use empty space deliberately; do not fill gaps with fake stats.
-- If content is missing, use honest placeholders such as `[campus photo]`, `[partner logo]` or initials.
+- If content is missing, use honest placeholders such as `[campus photo]`, `[plan benefit]` or initials.
 
 ## Route Direction
 
@@ -154,7 +154,7 @@ Make the forum feel like a moderated student noticeboard, not a chaotic social f
 Make job board finding practical, trusted and student-safe.
 
 - Start with the student's work goal, study area and city.
-- Job rows should show employer/partner, role type, location, work format, closing date and trust markers.
+- Job rows should show employer, role type, location, work format, closing date and trust markers.
 - Filters should cover city, industry, role type, experience level, work rights relevance and paid/volunteer status.
 - Primary actions: save opportunity, view details, open apply/contact path.
 - Avoid making the screen feel like a generic recruitment marketplace.
@@ -168,13 +168,14 @@ Make support-service discovery official, calm and clear.
 - The AI router can ask questions, but final answers should route to official resources.
 - Never make legal, migration, medical or financial advice look like the app's own answer.
 
-### Partners
+### Premium
 
-Make partner/sponsor profiles credible without making the product feel ad-funded.
+Make subscriptions feel like an optional productivity upgrade, not a barrier to core student support.
 
-- Profile layout: organisation, verification, active events, student value, contact path.
-- Show engagement only as modest aggregate metrics.
-- Avoid banners, aggressive CTAs and promotional copy.
+- Plan layout: Free, Plus and Pro with transparent AI monthly usage limits.
+- Premium value should focus on AI coaching, job alerts, saved folders and weekly planning.
+- Core support resources, safety information and basic forum/events/jobs access must remain free.
+- Avoid dark patterns, fake scarcity and pressure language.
 
 ### AI Guide
 
@@ -194,7 +195,7 @@ The v0 should include five route concepts:
 1. Onboarding plus first-week plan
 2. Events/forum/job discovery workspace
 3. Support-service discovery
-4. Partner/sponsor profile
+4. Premium subscription and AI usage
 5. AI Guide with structured recommendations
 
 Use real layout, real typography tokens and honest placeholders. Do not create more AI-generated concept images until the v0 direction feels specific and usable.

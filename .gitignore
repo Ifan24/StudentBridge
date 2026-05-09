@@ -1,8 +1,11 @@
 .DS_Store
 node_modules/
+.next/
 dist/
 build/
 .vercel/
+*.tsbuildinfo
 .env
 .env.*
+!.env.example
 *.log

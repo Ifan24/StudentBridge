@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id             String          @id @default(cuid())
+  email          String          @unique
+  name           String
+  imageUrl       String?
+  profile        StudentProfile?
+  subscriptions  UserSubscription[]
+  posts          ForumPost[]
+  comments       ForumComment[]
+  votes          ForumVote[]
+  savedItems     SavedItem[]
+  reports        Report[]
+  aiInteractions AiInteraction[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model StudentProfile {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  city                String
+  institution         String
+  studyArea           String
+  arrivalStage        String
+  goals               String[]
+  languages           String[]
+  preferredEventTypes String[]
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model ForumTopic {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  name        String
+  description String
+  icon        String
+  color       String
+  posts       ForumPost[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model ForumPost {
+  id           String         @id @default(cuid())
+  title        String
+  body         String
+  city         String
+  tags         String[]
+  status       String         @default("ACTIVE")
+  helpfulCount Int            @default(0)
+  replyCount   Int            @default(0)
+  topicId      String
+  authorId     String
+  topic        ForumTopic     @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  author       User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments     ForumComment[]
+  votes        ForumVote[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@index([topicId])
+  @@index([city])
+}
+
+model ForumComment {
+  id           String    @id @default(cuid())
+  body         String
+  helpfulCount Int       @default(0)
+  status       String    @default("ACTIVE")
+  postId       String
+  authorId     String
+  post         ForumPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author       User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([postId])
+}
+
+model ForumVote {
+  id        String    @id @default(cuid())
+  value     Int       @default(1)
+  postId    String
+  userId    String
+  post      ForumPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+
+  @@unique([userId, postId])
+}
+
+model JobOpportunity {
+  id                 String      @id @default(cuid())
+  title              String
+  company            String
+  verified           Boolean     @default(true)
+  city               String
+  workType           String
+  industry           String
+  experienceLevel    String
+  workRightsFriendly Boolean     @default(true)
+  paid               Boolean     @default(true)
+  closingDate        DateTime?
+  description        String
+  tags               String[]
+  applyUrl           String
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  @@index([city])
+  @@index([industry])
+}
+
+model SupportResource {
+  id          String      @id @default(cuid())
+  title       String
+  category    String
+  description String
+  url         String
+  official    Boolean     @default(true)
+  tags        String[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model SubscriptionPlan {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  description     String
+  priceMonthlyCents Int    @default(0)
+  aiMonthlyLimit Int       @default(5)
+  features        String[]
+  highlighted     Boolean  @default(false)
+  subscriptions   UserSubscription[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model UserSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  planId    String
+  status    String   @default("ACTIVE")
+  startedAt DateTime @default(now())
+  currentPeriodStart DateTime @default(now())
+  currentPeriodEnd   DateTime?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan      SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@index([planId])
+}
+
+model SavedItem {
+  id        String   @id @default(cuid())
+  itemType  String
+  itemId    String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, itemType, itemId])
+  @@index([itemType, itemId])
+}
+
+model EventCache {
+  id        String   @id @default(cuid())
+  cacheKey  String   @unique
+  data      Json
+  fetchedAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+model Report {
+  id         String   @id @default(cuid())
+  targetType String
+  targetId   String
+  reason     String
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@index([targetType, targetId])
+}
+
+model AiInteraction {
+  id            String   @id @default(cuid())
+  intent        String
+  promptSummary String
+  response      Json
+  userId        String?
+  user          User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt     DateTime @default(now())
+}
