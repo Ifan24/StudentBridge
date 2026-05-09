@@ -95,4 +95,3 @@ Keep commits focused. Do not mix unrelated report, research and app-code changes
 Keep team-facing documentation in `README.md`, `research/` or future `docs/` files.
 
 Documentation should be app/product focused and useful for the team. It should not include private coursework notes or individual-only planning.
-

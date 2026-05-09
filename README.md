@@ -26,6 +26,7 @@ StudentBridge is a mobile/web app concept for international students in Australi
 - connecting students with clubs, events and study groups
 - linking students with mentors, alumni, employers and career workshops
 - helping students discover local support services, volunteering and community groups
+- using AI to turn student goals into practical networking next steps
 
 ## Key files
 
@@ -39,7 +40,7 @@ StudentBridge is a mobile/web app concept for international students in Australi
 - TypeScript
 - Tailwind CSS
 - Vercel deployment
-- Server-side AI calls for recommendations, onboarding help and support routing
+- Server-side AI calls for recommendations, onboarding help, support routing and networking guidance
 
 ## MVP Direction
 

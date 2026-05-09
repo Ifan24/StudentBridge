@@ -92,9 +92,13 @@ StudentBridge value:
 
 ## MVP Feature Set
 
-These are the features that would make the prototype feel useful without becoming too large.
+These seven features would make the prototype feel useful without becoming too large.
+
+First-pass concept backups are stored in `assets/concepts/generated-v1/`. They are useful for feature inventory, but the stronger visual direction should follow `design/style-direction.md`.
 
 ### 1. Student Onboarding
+
+Concept backup: `../assets/concepts/generated-v1/01-student-onboarding.png`
 
 Purpose:
 
@@ -115,6 +119,8 @@ AI opportunity:
 - Generate a short personalised starter plan after onboarding.
 
 ### 2. Networking Event Directory
+
+Concept backup: `../assets/concepts/generated-v1/02-event-directory.png`
 
 Purpose:
 
@@ -140,6 +146,8 @@ Important UI states:
 
 ### 3. Clubs and Communities Directory
 
+Concept backup: `../assets/concepts/generated-v1/03-communities-directory.png`
+
 Purpose:
 
 - Help students discover trusted groups beyond their immediate class.
@@ -154,6 +162,8 @@ Entries:
 - City-based student communities
 
 ### 4. Mentor and Buddy Matching
+
+Concept backup: `../assets/concepts/generated-v1/04-mentor-matching.png`
 
 Purpose:
 
@@ -172,6 +182,8 @@ Safety:
 - Report/block controls.
 
 ### 5. AI StudentBridge Assistant
+
+Concept backup: `../assets/concepts/generated-v1/05-ai-assistant.png`
 
 Purpose:
 
@@ -194,6 +206,8 @@ Implementation notes:
 - Avoid making legal, migration or medical claims. Link to official sources instead.
 
 ### 6. Support-Service Discovery
+
+Concept backup: `../assets/concepts/generated-v1/06-support-discovery.png`
 
 Purpose:
 
@@ -394,4 +408,3 @@ AI metrics:
 - Next.js, environment variables: https://nextjs.org/docs/app/guides/environment-variables
 - Vercel AI SDK: https://vercel.com/docs/ai-sdk
 - OpenAI, Structured Outputs: https://developers.openai.com/api/docs/guides/structured-outputs
-
