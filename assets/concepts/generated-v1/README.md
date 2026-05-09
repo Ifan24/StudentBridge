@@ -10,7 +10,8 @@ The direction is useful for feature coverage, but it should not be treated as th
 - `01-student-onboarding.png` - onboarding concept
 - `02-event-directory.png` - networking event directory concept
 - `03-communities-directory.png` - clubs and communities concept
-- `04-mentor-matching.png` - deprecated mentor and buddy matching concept, superseded by job board finding
+- `04-job-board-finding.png` - job board finding concept
+- `04-mentor-matching.png` - deprecated mentor and buddy matching concept
 - `05-ai-assistant.png` - AI assistant concept
 - `06-support-discovery.png` - support-service discovery concept
 - `07-partner-sponsor-profile.png` - partner/sponsor profile concept

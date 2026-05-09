@@ -163,7 +163,7 @@ Entries:
 
 ### 4. Job Board Finding
 
-Concept backup: `../assets/concepts/generated-v1/04-mentor-matching.png` is now deprecated and should be replaced by a job board concept in the next design pass.
+Concept backup: `../assets/concepts/generated-v1/04-job-board-finding.png`
 
 Purpose:
 
