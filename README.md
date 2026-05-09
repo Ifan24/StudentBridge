@@ -23,9 +23,9 @@ StudentBridge is a team project for a Next.js web app that helps international s
 StudentBridge is a mobile/web app concept for international students in Australia. The current topic angle is networking:
 
 - helping students make friends and reduce isolation
-- connecting students with clubs, events and study groups
+- connecting students through events, study discussions and peer Q&A
 - linking students with job boards, employers, career workshops and practical work opportunities
-- helping students discover local support services, volunteering and community groups
+- helping students discover local support services, volunteering and trusted student discussions
 - using AI to turn student goals into practical networking next steps
 
 ## Key files
@@ -46,7 +46,7 @@ StudentBridge is a mobile/web app concept for international students in Australi
 
 - Student onboarding
 - Networking event directory
-- Clubs and communities directory
+- Student forum
 - Job board finding
 - Support-service discovery
 - Partner/sponsor profiles

@@ -4,7 +4,7 @@ StudentBridge is a Next.js web app for international students in Australia. The 
 
 ## Product Thesis
 
-International students do not only need information. They need trusted connections and practical pathways: classmates, clubs, local events, support hubs, employers, job opportunities and community groups. StudentBridge should become a practical networking layer that helps students find the right people, events, opportunities and services at the right stage of their student journey.
+International students do not only need information. They need trusted connections and practical pathways: classmates, local events, peer discussions, support hubs, employers, job opportunities and community groups. StudentBridge should become a practical networking layer that helps students find the right people, events, discussions, opportunities and services at the right stage of their student journey.
 
 ## Evidence Summary
 
@@ -13,7 +13,7 @@ International students do not only need information. They need trusted connectio
 - Study Australia's 2024 Student Survey found that only 17% of international students surveyed had used local state or territory support services or study hubs, while students who used them reported 92% satisfaction.
 - Study Australia's Industry Experience Program demonstrates demand for structured ways to connect students with employers through real industry projects.
 - Study Melbourne highlights local hubs, clubs, sport, interest groups and events as practical ways for students to build community and skills.
-- eSafety's Safety by Design guidance is relevant because StudentBridge involves user profiles, listings, events and messaging.
+- eSafety's Safety by Design guidance is relevant because StudentBridge involves user profiles, listings, events, forum posts and messaging.
 - OAIC Australian Privacy Principles are relevant because the app may collect personal information such as name, city, institution, interests, career field and event activity.
 
 ## Target Users
@@ -31,7 +31,7 @@ Needs:
 StudentBridge value:
 
 - Onboarding checklist
-- Local event and community suggestions
+- Local event and forum suggestions
 - Events near campus
 - AI settlement guide
 - Support-service discovery
@@ -58,18 +58,18 @@ StudentBridge value:
 
 Needs:
 
-- Clubs and societies
-- Cultural groups
+- Peer questions and answers
+- Study and city discussion spaces
 - Volunteering
 - Sport and interest events
-- Local city community groups
+- Local student tips and recommendations
 
 StudentBridge value:
 
-- Club directory
+- Reddit-like student forum
 - Volunteer opportunity directory
-- Event filtering by interest, city and language
-- Saved events and reminders
+- Topic feeds by interest, city and study area
+- Saved posts, replies and event reminders
 
 ### Sponsor or Partner
 
@@ -110,7 +110,7 @@ Core fields:
 - Campus or institution
 - Study area
 - Arrival stage
-- Goals: make friends, find work, join clubs, find job opportunities, volunteer, get support
+- Goals: make friends, find work, join forum topics, find job opportunities, volunteer, get support
 - Preferred event types
 - Languages
 
@@ -144,22 +144,28 @@ Important UI states:
 - Event detail page
 - Register interest
 
-### 3. Clubs and Communities Directory
+### 3. Student Forum
 
-Concept backup: `../assets/concepts/generated-v1/03-communities-directory.png`
+Concept backup: `../assets/concepts/generated-v1/03-student-forum.png`
 
 Purpose:
 
-- Help students discover trusted groups beyond their immediate class.
+- Give international students a safe Reddit-like space to ask questions, share tips and discuss student life in Australia.
 
-Entries:
+MVP version:
 
-- Student clubs
-- Cultural groups
-- Sport groups
-- Study groups
-- Professional associations
-- City-based student communities
+- Topic feeds for city life, study help, jobs, events, accommodation, wellbeing and general questions.
+- Posts with title, body, topic, city, tags, vote count, reply count and saved state.
+- Comments/replies with simple threading for one level of discussion.
+- Sort by trending, newest and unanswered.
+- Let students save posts and follow topics.
+
+Safety:
+
+- Require clear community standards before posting.
+- Allow report, hide and block actions on posts and comments.
+- Avoid showing private profile details by default.
+- Flag high-risk topics such as migration, legal, medical or financial questions and route users to official resources.
 
 ### 4. Job Board Finding
 
@@ -193,7 +199,7 @@ Purpose:
 MVP AI features:
 
 - Explain what kind of networking event fits the student's goal.
-- Suggest events or communities from app data.
+- Suggest events or forum discussions from app data.
 - Draft a short networking introduction message.
 - Improve a LinkedIn/about-me paragraph.
 - Convert student goals into a weekly action plan.
@@ -265,7 +271,7 @@ Ruiqi's AI ownership can focus on features that make the app feel smarter withou
 
 3. AI networking pitch coach
    - Input: student's rough introduction
-   - Output: polished introduction for job, employer or club context
+   - Output: polished introduction for job, employer or forum context
 
 4. AI support router
    - Input: student question
@@ -277,8 +283,9 @@ Ruiqi's AI ownership can focus on features that make the app feel smarter withou
 2. Smart job/opportunity recommendation explanation
 3. Sponsor event quality checker
 4. AI-generated event tags from event descriptions
-5. Weekly networking plan
-6. Analytics summary for sponsors
+5. AI forum post summariser and duplicate-question detector
+6. Weekly networking plan
+7. Analytics summary for sponsors
 
 ## Safety and Privacy Requirements
 
@@ -293,11 +300,11 @@ Minimum safety features:
 - No exact address sharing in student profiles
 - Opt-in messaging or application-interest sharing
 - Clear community standards
-- Moderation queue for reported users/events
+- Moderation queue for reported users, posts, comments and events
 
 Privacy principles:
 
-- Collect only what is needed for recommendations, saved items and application-interest workflows.
+- Collect only what is needed for recommendations, saved items, forum participation and application-interest workflows.
 - Keep private profile details off public pages.
 - Do not expose personal student data to sponsors.
 - Use aggregated analytics for sponsor dashboards.
@@ -312,7 +319,9 @@ Core entities:
 - `StudentProfile`
 - `Organisation`
 - `Event`
-- `Community`
+- `ForumTopic`
+- `ForumPost`
+- `ForumComment`
 - `Opportunity`
 - `SavedItem`
 - `Registration`
@@ -324,8 +333,10 @@ Important relationships:
 - A user has one student profile.
 - An organisation can host many events.
 - A student can save and register for many events.
+- A forum topic can have many posts.
+- A post belongs to a user and can have many comments.
 - An opportunity belongs to an organisation or partner and can be saved or opened by many students.
-- Reports can target users, events, communities or organisations.
+- Reports can target users, events, posts, comments or organisations.
 
 ## Role Map
 
@@ -355,7 +366,7 @@ Suggested routes:
 - `/dashboard` - personalised student home
 - `/events` - event directory
 - `/events/[id]` - event details
-- `/communities` - clubs and groups
+- `/forum` - student forum
 - `/jobs` - job board finding
 - `/support` - support-service directory
 - `/ai` - StudentBridge assistant
@@ -374,6 +385,7 @@ Student metrics:
 - Onboarding completion rate
 - Saved events per user
 - Event registration clicks
+- Forum posts and helpful replies
 - Job save/apply clicks
 - Support-service clicks
 - Repeat weekly visits

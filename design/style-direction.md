@@ -1,6 +1,6 @@
 # StudentBridge Design Direction
 
-This is the working art direction for the first StudentBridge web prototype. The goal is not a polished generic SaaS dashboard. The goal is a practical student network product that feels rooted in Australian student life: campus noticeboards, city transport maps, verified event listings, community desks, job board pathways and official support routes.
+This is the working art direction for the first StudentBridge web prototype. The goal is not a polished generic SaaS dashboard. The goal is a practical student network product that feels rooted in Australian student life: campus noticeboards, city transport maps, verified event listings, student forum threads, job board pathways and official support routes.
 
 ## Design Position
 
@@ -9,7 +9,7 @@ StudentBridge should feel like:
 - a trusted city-and-campus guide for new arrivals
 - a networking workspace, not a marketing landing page
 - calm enough for safety and support, lively enough for student life
-- built around real actions: save event, join group, find job opportunities, find support
+- built around real actions: save event, ask a question, reply to students, find job opportunities, find support
 - specific to international students in Australia
 
 It should not feel like:
@@ -79,6 +79,7 @@ The main metaphor is a city noticeboard connected by a light network map.
 Use:
 
 - event rows that resemble posted opportunities
+- forum threads that resemble practical student questions
 - city/campus rails for filters and navigation
 - verified-host stamps
 - compact timeline strips for first-week plans
@@ -99,14 +100,14 @@ Avoid:
 
 Desktop app shell:
 
-- Left navigation: Home, Events, Communities, Jobs, Support, Partners, AI Guide.
+- Left navigation: Home, Events, Forum, Jobs, Support, Partners, AI Guide.
 - Top utility row: city selector, search, saved items, profile.
 - Main workspace: one primary task per route.
 - Right context panel only when it helps the task, such as a first-week plan, saved shortlist or official-source notes.
 
 Mobile shell:
 
-- Bottom navigation: Home, Events, Communities, AI Guide.
+- Bottom navigation: Home, Events, Forum, AI Guide.
 - Support and Jobs can live behind More until the mobile IA is proven.
 - Search and city filters collapse into a top drawer.
 - Touch targets should be at least 44px.
@@ -138,13 +139,15 @@ Make events feel like a trusted campus/city board.
 - Secondary rail: saved events and "this week" shortcuts.
 - Event detail: clear register-interest action and host trust markers.
 
-### Communities
+### Forum
 
-Make communities feel like real groups, not app tiles.
+Make the forum feel like a moderated student noticeboard, not a chaotic social feed.
 
-- Category rails: cultural, study, sport, volunteering, professional.
-- Entries should show next event, host verification and member context.
-- Recommendations must explain why the group is relevant.
+- Topic rails: city life, study help, jobs, events, accommodation, wellbeing and general questions.
+- Thread rows should show title, topic, city, tags, reply count, helpful votes and moderation status.
+- Prompts should encourage specific questions and useful replies.
+- Primary actions: ask question, reply, save, follow topic.
+- Avoid infinite-feed addiction patterns, hostile ranking language and public exposure of private student details.
 
 ### Jobs
 
@@ -178,7 +181,7 @@ Make partner/sponsor profiles credible without making the product feel ad-funded
 Make AI a practical assistant embedded in the product.
 
 - Chat is one mode, not the whole screen.
-- Pair responses with structured cards: suggested events, groups, intros or weekly plans.
+- Pair responses with structured cards: suggested events, forum threads, intros or weekly plans.
 - Clearly label whether a response uses app data or official links.
 - Quick actions: draft intro, suggest events, build weekly plan, find support.
 
@@ -189,7 +192,7 @@ Before generating more static images, create a browser-viewable HTML/CSS v0. It 
 The v0 should include five route concepts:
 
 1. Onboarding plus first-week plan
-2. Events/community/job discovery workspace
+2. Events/forum/job discovery workspace
 3. Support-service discovery
 4. Partner/sponsor profile
 5. AI Guide with structured recommendations
