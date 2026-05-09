@@ -6,7 +6,7 @@ Use this folder for app development or prototype planning. In a Next.js App Rout
 
 - onboarding for new international students
 - networking event directory
-- peer buddy or mentor matching
+- job board finding
 - student club and society directory
 - verified employer sessions
 - volunteering and industry experience listings
@@ -19,7 +19,7 @@ Use this folder for app development or prototype planning. In a Next.js App Rout
 
 - Home dashboard
 - Events near me
-- Mentors and alumni
+- Jobs and work opportunities
 - Clubs and communities
 - Career networking
 - Support services

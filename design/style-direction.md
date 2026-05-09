@@ -1,6 +1,6 @@
 # StudentBridge Design Direction
 
-This is the working art direction for the first StudentBridge web prototype. The goal is not a polished generic SaaS dashboard. The goal is a practical student network product that feels rooted in Australian student life: campus noticeboards, city transport maps, verified event listings, community desks, mentor introductions and official support pathways.
+This is the working art direction for the first StudentBridge web prototype. The goal is not a polished generic SaaS dashboard. The goal is a practical student network product that feels rooted in Australian student life: campus noticeboards, city transport maps, verified event listings, community desks, job board pathways and official support routes.
 
 ## Design Position
 
@@ -9,7 +9,7 @@ StudentBridge should feel like:
 - a trusted city-and-campus guide for new arrivals
 - a networking workspace, not a marketing landing page
 - calm enough for safety and support, lively enough for student life
-- built around real actions: save event, join group, request intro, find support
+- built around real actions: save event, join group, find job opportunities, find support
 - specific to international students in Australia
 
 It should not feel like:
@@ -99,7 +99,7 @@ Avoid:
 
 Desktop app shell:
 
-- Left navigation: Home, Events, Communities, Mentors, Support, Partners, AI Guide.
+- Left navigation: Home, Events, Communities, Jobs, Support, Partners, AI Guide.
 - Top utility row: city selector, search, saved items, profile.
 - Main workspace: one primary task per route.
 - Right context panel only when it helps the task, such as a first-week plan, saved shortlist or official-source notes.
@@ -107,7 +107,7 @@ Desktop app shell:
 Mobile shell:
 
 - Bottom navigation: Home, Events, Communities, AI Guide.
-- Support and Mentors can live behind More until the mobile IA is proven.
+- Support and Jobs can live behind More until the mobile IA is proven.
 - Search and city filters collapse into a top drawer.
 - Touch targets should be at least 44px.
 
@@ -146,14 +146,15 @@ Make communities feel like real groups, not app tiles.
 - Entries should show next event, host verification and member context.
 - Recommendations must explain why the group is relevant.
 
-### Mentors
+### Jobs
 
-Make matching safe and opt-in.
+Make job board finding practical, trusted and student-safe.
 
-- Start with the student's goal.
-- Match cards show reason-for-match, availability and privacy level.
-- Primary action: request intro.
-- Avoid dating-app mechanics or swipe patterns.
+- Start with the student's work goal, study area and city.
+- Job rows should show employer/partner, role type, location, work format, closing date and trust markers.
+- Filters should cover city, industry, role type, experience level, work rights relevance and paid/volunteer status.
+- Primary actions: save opportunity, view details, open apply/contact path.
+- Avoid making the screen feel like a generic recruitment marketplace.
 
 ### Support
 
@@ -188,7 +189,7 @@ Before generating more static images, create a browser-viewable HTML/CSS v0. It 
 The v0 should include five route concepts:
 
 1. Onboarding plus first-week plan
-2. Events/community discovery workspace
+2. Events/community/job discovery workspace
 3. Support-service discovery
 4. Partner/sponsor profile
 5. AI Guide with structured recommendations

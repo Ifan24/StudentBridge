@@ -24,7 +24,7 @@ StudentBridge is a mobile/web app concept for international students in Australi
 
 - helping students make friends and reduce isolation
 - connecting students with clubs, events and study groups
-- linking students with mentors, alumni, employers and career workshops
+- linking students with job boards, employers, career workshops and practical work opportunities
 - helping students discover local support services, volunteering and community groups
 - using AI to turn student goals into practical networking next steps
 
@@ -47,7 +47,7 @@ StudentBridge is a mobile/web app concept for international students in Australi
 - Student onboarding
 - Networking event directory
 - Clubs and communities directory
-- Mentor or buddy matching
+- Job board finding
 - Support-service discovery
 - Partner/sponsor profiles
 - AI StudentBridge assistant

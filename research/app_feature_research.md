@@ -4,7 +4,7 @@ StudentBridge is a Next.js web app for international students in Australia. The 
 
 ## Product Thesis
 
-International students do not only need information. They need trusted connections: classmates, clubs, local events, support hubs, mentors, employers and community groups. StudentBridge should become a practical networking layer that helps students find the right people, events and services at the right stage of their student journey.
+International students do not only need information. They need trusted connections and practical pathways: classmates, clubs, local events, support hubs, employers, job opportunities and community groups. StudentBridge should become a practical networking layer that helps students find the right people, events, opportunities and services at the right stage of their student journey.
 
 ## Evidence Summary
 
@@ -13,7 +13,7 @@ International students do not only need information. They need trusted connectio
 - Study Australia's 2024 Student Survey found that only 17% of international students surveyed had used local state or territory support services or study hubs, while students who used them reported 92% satisfaction.
 - Study Australia's Industry Experience Program demonstrates demand for structured ways to connect students with employers through real industry projects.
 - Study Melbourne highlights local hubs, clubs, sport, interest groups and events as practical ways for students to build community and skills.
-- eSafety's Safety by Design guidance is relevant because StudentBridge involves user profiles, matching, events and messaging.
+- eSafety's Safety by Design guidance is relevant because StudentBridge involves user profiles, listings, events and messaging.
 - OAIC Australian Privacy Principles are relevant because the app may collect personal information such as name, city, institution, interests, career field and event activity.
 
 ## Target Users
@@ -31,7 +31,7 @@ Needs:
 StudentBridge value:
 
 - Onboarding checklist
-- Peer buddy suggestions
+- Local event and community suggestions
 - Events near campus
 - AI settlement guide
 - Support-service discovery
@@ -41,7 +41,7 @@ StudentBridge value:
 Needs:
 
 - Employer events
-- Mentors and alumni
+- Job boards and employer opportunities
 - Internship or volunteering opportunities
 - Resume and LinkedIn guidance
 - Australian workplace communication help
@@ -50,7 +50,7 @@ StudentBridge value:
 
 - Career networking feed
 - AI profile and pitch coach
-- Mentor matching
+- Job board finding
 - Verified employer sessions
 - Industry project listings
 
@@ -110,7 +110,7 @@ Core fields:
 - Campus or institution
 - Study area
 - Arrival stage
-- Goals: make friends, find work, join clubs, meet mentors, volunteer, get support
+- Goals: make friends, find work, join clubs, find job opportunities, volunteer, get support
 - Preferred event types
 - Languages
 
@@ -161,23 +161,24 @@ Entries:
 - Professional associations
 - City-based student communities
 
-### 4. Mentor and Buddy Matching
+### 4. Job Board Finding
 
-Concept backup: `../assets/concepts/generated-v1/04-mentor-matching.png`
+Concept backup: `../assets/concepts/generated-v1/04-mentor-matching.png` is now deprecated and should be replaced by a job board concept in the next design pass.
 
 Purpose:
 
-- Connect students with peers, alumni and mentors.
+- Help students find trusted job, internship, volunteering and industry-experience opportunities relevant to international students.
 
 MVP version:
 
-- Use tags and simple matching instead of complex real-time matching.
-- Match by city, study area, language, goal and availability.
+- Use curated listings and simple filters instead of complex real-time matching.
+- Filter by city, work type, study area, industry, experience level, visa/work-rights relevance and availability.
+- Let students save opportunities, view employer context and open a clear apply/contact path.
 
 Safety:
 
-- Opt-in matching only.
-- Students control what information is visible.
+- Students choose when to share application interest or contact details.
+- Students control what profile information is visible to employers or partners.
 - No exact address sharing.
 - Report/block controls.
 
@@ -264,7 +265,7 @@ Ruiqi's AI ownership can focus on features that make the app feel smarter withou
 
 3. AI networking pitch coach
    - Input: student's rough introduction
-   - Output: polished introduction for mentor, employer or club context
+   - Output: polished introduction for job, employer or club context
 
 4. AI support router
    - Input: student question
@@ -273,7 +274,7 @@ Ruiqi's AI ownership can focus on features that make the app feel smarter withou
 ### Later AI
 
 1. Multilingual event summaries
-2. Smart mentor matching explanation
+2. Smart job/opportunity recommendation explanation
 3. Sponsor event quality checker
 4. AI-generated event tags from event descriptions
 5. Weekly networking plan
@@ -290,13 +291,13 @@ Minimum safety features:
 - Event host verification
 - Visible partner verification status
 - No exact address sharing in student profiles
-- Opt-in messaging or matching
+- Opt-in messaging or application-interest sharing
 - Clear community standards
 - Moderation queue for reported users/events
 
 Privacy principles:
 
-- Collect only what is needed for matching and recommendations.
+- Collect only what is needed for recommendations, saved items and application-interest workflows.
 - Keep private profile details off public pages.
 - Do not expose personal student data to sponsors.
 - Use aggregated analytics for sponsor dashboards.
@@ -312,7 +313,6 @@ Core entities:
 - `Organisation`
 - `Event`
 - `Community`
-- `MentorProfile`
 - `Opportunity`
 - `SavedItem`
 - `Registration`
@@ -324,7 +324,7 @@ Important relationships:
 - A user has one student profile.
 - An organisation can host many events.
 - A student can save and register for many events.
-- A mentor can be matched with many students, but only through opt-in requests.
+- An opportunity belongs to an organisation or partner and can be saved or opened by many students.
 - Reports can target users, events, communities or organisations.
 
 ## Role Map
@@ -356,7 +356,7 @@ Suggested routes:
 - `/events` - event directory
 - `/events/[id]` - event details
 - `/communities` - clubs and groups
-- `/mentors` - mentor discovery
+- `/jobs` - job board finding
 - `/support` - support-service directory
 - `/ai` - StudentBridge assistant
 - `/partners` - sponsor/partner information
@@ -374,7 +374,7 @@ Student metrics:
 - Onboarding completion rate
 - Saved events per user
 - Event registration clicks
-- Mentor request clicks
+- Job save/apply clicks
 - Support-service clicks
 - Repeat weekly visits
 

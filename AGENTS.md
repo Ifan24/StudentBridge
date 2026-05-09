@@ -2,7 +2,7 @@
 
 ## Project
 
-StudentBridge is a team-built Next.js web app for international students in Australia. The app helps students discover trusted events, communities, mentors, employer sessions, volunteering opportunities and support services.
+StudentBridge is a team-built Next.js web app for international students in Australia. The app helps students discover trusted events, communities, job opportunities, employer sessions, volunteering opportunities and support services.
 
 ## Team Roles
 
@@ -23,7 +23,7 @@ Prioritise:
 - student onboarding
 - event discovery
 - clubs and communities
-- mentor or buddy matching
+- job board finding
 - support-service discovery
 - sponsor or partner profiles
 - AI assistance for recommendations, onboarding and networking confidence
@@ -49,7 +49,7 @@ Use:
 
 Keep secrets server-side. Do not expose API keys through `NEXT_PUBLIC_` variables.
 
-Prefer simple seeded data for the prototype until the core screens are stable. When adding a database, keep the data model aligned with users, profiles, events, organisations, communities, mentors, saved items, registrations and reports.
+Prefer simple seeded data for the prototype until the core screens are stable. When adding a database, keep the data model aligned with users, profiles, events, organisations, communities, job opportunities, saved items, registrations and reports.
 
 ## AI Direction
 
@@ -69,7 +69,7 @@ Use structured outputs for recommendation objects when the UI expects predictabl
 
 Design for trust from the start:
 
-- opt-in matching
+- opt-in contact or application-interest sharing
 - report and block controls
 - event host verification
 - no exact student address sharing
