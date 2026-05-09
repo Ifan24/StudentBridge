@@ -12,6 +12,7 @@ import type {
   ForumPostView,
   ForumTopicView,
   JobOpportunityView,
+  SavedItemType,
   StudentProfileView,
   SubscriptionPlanView,
   SubscriptionStateView,
@@ -136,6 +137,18 @@ export async function getSupportResources(): Promise<SupportResourceView[]> {
       tags: resource.tags
     }));
   }, mockSupportResources);
+}
+
+export async function getSavedItemIds(itemType: SavedItemType): Promise<string[]> {
+  return withFallback(async () => {
+    await ensureDemoUser();
+    const items = await prisma.savedItem.findMany({
+      where: { userId: DEMO_USER_ID, itemType },
+      select: { itemId: true },
+      orderBy: { createdAt: "desc" }
+    });
+    return items.map((item) => item.itemId);
+  }, []);
 }
 
 export async function getSubscriptionState(): Promise<SubscriptionStateView> {

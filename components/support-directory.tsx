@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Bot, ExternalLink, Loader2, Search, ShieldCheck } from "lucide-react";
+import { Bookmark, Bot, CheckCircle2, ExternalLink, Loader2, Search, ShieldCheck } from "lucide-react";
 import type { AiResponse, SupportResourceView } from "@/lib/types";
 import { EmptyState, Pill } from "@/components/ui";
 import { Button } from "@/components/ui/button";
@@ -9,12 +9,13 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
-export function SupportDirectory({ resources }: { resources: SupportResourceView[] }) {
+export function SupportDirectory({ resources, initialSavedIds = [] }: { resources: SupportResourceView[]; initialSavedIds?: string[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState<AiResponse | null>(null);
   const [loading, setLoading] = useState(false);
+  const [saved, setSaved] = useState<Set<string>>(() => new Set(initialSavedIds));
 
   const categories = ["All", ...Array.from(new Set(resources.map((resource) => resource.category)))];
   const filtered = useMemo(() => {
@@ -34,6 +35,19 @@ export function SupportDirectory({ resources }: { resources: SupportResourceView
     });
     setAnswer(await response.json());
     setLoading(false);
+  }
+
+  async function toggleSaved(id: string) {
+    const next = new Set(saved);
+    const isSaved = next.has(id);
+    if (isSaved) next.delete(id);
+    else next.add(id);
+    setSaved(next);
+    await fetch("/api/saved", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ itemType: "support", itemId: id, saved: !isSaved })
+    });
   }
 
   return (
@@ -71,9 +85,15 @@ export function SupportDirectory({ resources }: { resources: SupportResourceView
                 <div className="mt-4 flex flex-wrap gap-2">
                   {resource.tags.map((tag) => <Pill key={tag} tone="neutral">{tag}</Pill>)}
                 </div>
-                <a href={resource.url} target="_blank" rel="noreferrer" className="focus-ring mt-5 inline-flex items-center gap-2 rounded-md border border-bridge px-4 py-2.5 text-sm font-extrabold text-bridge">
-                  Open official source <ExternalLink className="h-4 w-4" />
-                </a>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <Button onClick={() => toggleSaved(resource.id)} variant="outline" className="h-10 rounded-md border-bridge font-extrabold text-bridge">
+                    {saved.has(resource.id) ? <CheckCircle2 data-icon="inline-start" /> : <Bookmark data-icon="inline-start" />}
+                    {saved.has(resource.id) ? "Saved" : "Save"}
+                  </Button>
+                  <a href={resource.url} target="_blank" rel="noreferrer" className="focus-ring inline-flex h-10 items-center gap-2 rounded-md border border-bridge px-4 py-2.5 text-sm font-extrabold text-bridge">
+                    Open source <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
               </article>
             ))}
           </div>

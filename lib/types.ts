@@ -84,6 +84,8 @@ export type SupportResourceView = {
   tags: string[];
 };
 
+export type SavedItemType = "event" | "post" | "job" | "support";
+
 export type SubscriptionPlanView = {
   id: string;
   slug: string;

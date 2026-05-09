@@ -11,12 +11,12 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 
 const EVENT_PAGE_SIZE = 6;
 
-export function EventsBoard({ events }: { events: EventItem[] }) {
+export function EventsBoard({ events, initialSavedIds = [] }: { events: EventItem[]; initialSavedIds?: string[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [price, setPrice] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const [saved, setSaved] = useState<Set<string>>(new Set());
+  const [saved, setSaved] = useState<Set<string>>(() => new Set(initialSavedIds));
 
   const categories = ["All", ...Array.from(new Set(events.map((event) => event.category)))];
   const filtered = useMemo(() => {

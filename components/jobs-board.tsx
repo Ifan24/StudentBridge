@@ -10,12 +10,13 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 
 const JOB_PAGE_SIZE = 3;
 
-export function JobsBoard({ jobs }: { jobs: JobOpportunityView[] }) {
+export function JobsBoard({ jobs, initialSavedIds = [] }: { jobs: JobOpportunityView[]; initialSavedIds?: string[] }) {
   const [query, setQuery] = useState("");
   const [city, setCity] = useState("All");
   const [workType, setWorkType] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const [saved, setSaved] = useState<Set<string>>(new Set());
+  const [saved, setSaved] = useState<Set<string>>(() => new Set(initialSavedIds));
+  const [applied, setApplied] = useState<Set<string>>(new Set());
 
   const filtered = useMemo(() => {
     return jobs.filter((job) => {
@@ -31,6 +32,17 @@ export function JobsBoard({ jobs }: { jobs: JobOpportunityView[] }) {
     setCurrentPage(1);
   }, [query, city, workType]);
 
+  useEffect(() => {
+    const stored = window.localStorage.getItem("studentbridge:v1:applied-jobs");
+    if (!stored) return;
+    try {
+      const ids = JSON.parse(stored) as string[];
+      setApplied(new Set(ids));
+    } catch {
+      setApplied(new Set());
+    }
+  }, []);
+
   const totalPages = Math.max(1, Math.ceil(filtered.length / JOB_PAGE_SIZE));
   const pageStart = (currentPage - 1) * JOB_PAGE_SIZE;
   const visibleJobs = filtered.slice(pageStart, pageStart + JOB_PAGE_SIZE);
@@ -45,6 +57,16 @@ export function JobsBoard({ jobs }: { jobs: JobOpportunityView[] }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ itemType: "job", itemId: id, saved: !isSaved })
+    });
+  }
+
+  function toggleApplied(id: string) {
+    setApplied((current) => {
+      const next = new Set(current);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      window.localStorage.setItem("studentbridge:v1:applied-jobs", JSON.stringify(Array.from(next)));
+      return next;
     });
   }
 
@@ -105,6 +127,10 @@ export function JobsBoard({ jobs }: { jobs: JobOpportunityView[] }) {
                     <Button onClick={() => toggleSaved(job.id)} variant="outline" className="h-10 w-full rounded-md border-bridge font-extrabold text-bridge">
                       {saved.has(job.id) ? <CheckCircle2 data-icon="inline-start" /> : <Bookmark data-icon="inline-start" />}
                       {saved.has(job.id) ? "Saved" : "Save"}
+                    </Button>
+                    <Button onClick={() => toggleApplied(job.id)} variant={applied.has(job.id) ? "secondary" : "outline"} className="h-10 w-full rounded-md border-line font-extrabold">
+                      <CheckCircle2 data-icon="inline-start" />
+                      {applied.has(job.id) ? "Applied" : "Mark applied"}
                     </Button>
                     <ExternalLinkButton href={job.applyUrl}>Apply</ExternalLinkButton>
                   </div>

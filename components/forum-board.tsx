@@ -11,14 +11,14 @@ import { Textarea } from "@/components/ui/textarea";
 
 const FORUM_PAGE_SIZE = 3;
 
-export function ForumBoard({ topics, posts }: { topics: ForumTopicView[]; posts: ForumPostView[] }) {
+export function ForumBoard({ topics, posts, initialSavedIds = [] }: { topics: ForumTopicView[]; posts: ForumPostView[]; initialSavedIds?: string[] }) {
   const [allPosts, setAllPosts] = useState(posts);
   const [topic, setTopic] = useState("all");
   const [sort, setSort] = useState<"trending" | "newest" | "unanswered">("trending");
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [composerOpen, setComposerOpen] = useState(false);
-  const [saved, setSaved] = useState<Set<string>>(new Set());
+  const [saved, setSaved] = useState<Set<string>>(() => new Set(initialSavedIds));
   const [reported, setReported] = useState<Set<string>>(new Set());
 
   const filtered = useMemo(() => {
