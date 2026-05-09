@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import type { StudentProfileView } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +14,23 @@ const languageOptions = ["English", "Mandarin", "Hindi", "Nepali", "Vietnamese",
 export function OnboardingForm({ profile }: { profile: StudentProfileView }) {
   const [form, setForm] = useState(profile);
   const [status, setStatus] = useState<"idle" | "saving" | "saved">("idle");
+
+  useEffect(() => {
+    const storedProfile = localStorage.getItem("studentbridge:v1:profile");
+    if (!storedProfile) return;
+    try {
+      const parsedProfile = JSON.parse(storedProfile) as StudentProfileView;
+      setForm((current) => ({
+        ...current,
+        ...parsedProfile,
+        goals: Array.isArray(parsedProfile.goals) ? parsedProfile.goals : current.goals,
+        languages: Array.isArray(parsedProfile.languages) ? parsedProfile.languages : current.languages,
+        preferredEventTypes: Array.isArray(parsedProfile.preferredEventTypes) ? parsedProfile.preferredEventTypes : current.preferredEventTypes
+      }));
+    } catch {
+      localStorage.removeItem("studentbridge:v1:profile");
+    }
+  }, []);
 
   const planPreview = useMemo(() => {
     const actions = [
@@ -31,6 +49,15 @@ export function OnboardingForm({ profile }: { profile: StudentProfileView }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
     });
+    const storedSession = localStorage.getItem("studentbridge:v1:session");
+    if (storedSession) {
+      try {
+        const session = JSON.parse(storedSession) as Record<string, unknown>;
+        localStorage.setItem("studentbridge:v1:session", JSON.stringify({ ...session, onboardingComplete: true }));
+      } catch {
+        localStorage.removeItem("studentbridge:v1:session");
+      }
+    }
     setStatus("saved");
   }
 
@@ -68,10 +95,17 @@ export function OnboardingForm({ profile }: { profile: StudentProfileView }) {
         <ChoiceGroup title="Languages" values={languageOptions} selected={form.languages} onToggle={(value) => toggleValue("languages", value)} />
         <ChoiceGroup title="Preferred event types" values={eventOptions} selected={form.preferredEventTypes} onToggle={(value) => toggleValue("preferredEventTypes", value)} />
 
-        <Button onClick={saveProfile} className="mt-8 h-12 rounded-md px-5 text-sm font-extrabold">
-          {status === "saving" ? <Loader2 data-icon="inline-start" className="animate-spin" /> : <CheckCircle2 data-icon="inline-start" />}
-          {status === "saved" ? "Profile saved" : "Save profile"}
-        </Button>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Button onClick={saveProfile} className="h-12 rounded-md px-5 text-sm font-extrabold">
+            {status === "saving" ? <Loader2 data-icon="inline-start" className="animate-spin" /> : <CheckCircle2 data-icon="inline-start" />}
+            {status === "saved" ? "Profile saved" : "Save profile"}
+          </Button>
+          {status === "saved" ? (
+            <Link href="/dashboard" className="focus-ring inline-flex h-12 items-center justify-center gap-2 rounded-md bg-ink px-5 text-sm font-extrabold text-white transition hover:bg-bridge">
+              Continue to dashboard <ArrowRight className="h-4 w-4" />
+            </Link>
+          ) : null}
+        </div>
       </section>
 
       <aside className="panel h-fit p-5 xl:col-span-2 2xl:col-span-1">
