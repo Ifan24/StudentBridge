@@ -2,6 +2,16 @@
 
 StudentBridge is a team project for a Next.js web app that helps international students in Australia build trusted social, academic, career and community networks.
 
+## Team
+
+- Marketing: Chengzhi
+- Back-end: Siqi
+- Front-end: Johnny
+- Data Analytics and Research: unassigned
+- Finance: Santosh
+- Project Coordination: Sabina
+- AI: Ruiqi
+
 ## Folder structure
 
 - `assets/` - logos, brand images and other visual assets.
@@ -20,4 +30,23 @@ StudentBridge is a mobile/web app concept for international students in Australi
 ## Key files
 
 - `assets/studentbridge-logo.jpeg`
-- `research/networking_for_international_students.md`
+- `research/app_feature_research.md`
+- `AGENTS.md`
+
+## Tech Direction
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Vercel deployment
+- Server-side AI calls for recommendations, onboarding help and support routing
+
+## MVP Direction
+
+- Student onboarding
+- Networking event directory
+- Clubs and communities directory
+- Mentor or buddy matching
+- Support-service discovery
+- Partner/sponsor profiles
+- AI StudentBridge assistant
