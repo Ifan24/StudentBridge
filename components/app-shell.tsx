@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -14,10 +15,10 @@ import {
   MessageCircle,
   Rocket,
   Search,
-  ShieldCheck,
   Sparkles,
 } from "lucide-react";
 import { appNav } from "@/lib/constants";
+import { Button } from "@/components/ui/button";
 
 const iconMap = {
   Home,
@@ -34,13 +35,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-white text-ink">
-      <aside className="fixed inset-y-0 left-0 z-50 hidden w-72 flex-col border-r border-line bg-white px-5 py-6 lg:flex">
+      <aside className="fixed inset-y-0 left-0 z-50 hidden w-64 flex-col border-r border-line bg-white px-4 py-6 lg:flex">
         <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="grid h-12 w-12 place-items-center rounded-full bg-bridge text-white">
-            <ShieldCheck className="h-6 w-6" />
-          </div>
+          <Image src="/brand/studentbridge-mark-app.png" alt="" width={56} height={56} priority className="h-11 w-11 rounded-2xl object-cover shadow-soft" />
           <div>
-            <div className="text-2xl font-extrabold leading-none tracking-normal">StudentBridge</div>
+            <div className="text-xl font-extrabold leading-none tracking-normal">StudentBridge</div>
             <div className="mt-1 text-sm font-semibold text-bridge">Connect. Share. Belong.</div>
           </div>
         </Link>
@@ -71,36 +70,34 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
 
-      <div className="lg:pl-72">
+      <div className="lg:pl-64">
         <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
           <div className="mx-auto flex h-20 max-w-[1500px] items-center justify-between px-5 lg:justify-end lg:px-8">
             <Link href="/dashboard" className="flex items-center gap-3 lg:hidden">
-              <div className="grid h-12 w-12 place-items-center rounded-full bg-bridge text-white">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
+              <Image src="/brand/studentbridge-mark-app.png" alt="" width={56} height={56} priority className="h-11 w-11 rounded-2xl object-cover shadow-soft" />
               <div>
-                <div className="text-2xl font-extrabold leading-none tracking-normal">StudentBridge</div>
+                <div className="text-xl font-extrabold leading-none tracking-normal">StudentBridge</div>
                 <div className="mt-1 text-sm font-semibold text-bridge">Connect. Share. Belong.</div>
               </div>
             </Link>
 
-            <div className="hidden items-center gap-3 md:flex">
-              <button className="focus-ring hidden h-11 items-center gap-2 rounded-md border border-line bg-white px-3 text-sm font-bold lg:flex">
-                Sydney <ChevronDown className="h-4 w-4" />
-              </button>
+            <div className="hidden items-center gap-3 xl:flex">
+              <Button variant="outline" className="h-11 rounded-md border-line bg-white px-3 text-sm font-bold">
+                Sydney <ChevronDown data-icon="inline-end" />
+              </Button>
               <div className="flex h-11 min-w-52 items-center gap-2 rounded-md border border-line bg-white px-3 text-sm text-muted">
                 <Search className="h-4 w-4" />
                 Search StudentBridge
               </div>
-              <button className="focus-ring grid h-11 w-11 place-items-center rounded-md border border-line bg-white text-ink">
-                <Bell className="h-5 w-5" />
-              </button>
-              <button className="focus-ring grid h-11 w-11 place-items-center rounded-md border border-line bg-white text-ink">
-                <Bookmark className="h-5 w-5" />
-              </button>
-              <button className="focus-ring flex h-11 items-center gap-2 rounded-md border border-line bg-white px-3 text-sm font-bold">
-                RL <ChevronDown className="h-4 w-4" />
-              </button>
+              <Button variant="outline" size="icon-lg" className="h-11 w-11 rounded-md border-line bg-white text-ink">
+                <Bell />
+              </Button>
+              <Button variant="outline" size="icon-lg" className="h-11 w-11 rounded-md border-line bg-white text-ink">
+                <Bookmark />
+              </Button>
+              <Button variant="outline" className="h-11 rounded-md border-line bg-white px-3 text-sm font-bold">
+                RL <ChevronDown data-icon="inline-end" />
+              </Button>
             </div>
           </div>
         </header>
@@ -134,13 +131,13 @@ export function PageHeader({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="mb-7 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+    <div className="mb-7 flex flex-col justify-between gap-4 xl:flex-row xl:items-end">
       <div>
         <div className="mb-3 inline-flex items-center gap-2 rounded-md bg-mist px-3 py-2 text-sm font-bold text-bridge">
           <Sparkles className="h-4 w-4" />
           StudentBridge workspace
         </div>
-        <h1 className="text-4xl font-extrabold tracking-normal text-ink lg:text-5xl">{title}</h1>
+        <h1 className="text-4xl font-extrabold tracking-normal text-ink xl:text-5xl">{title}</h1>
         <p className="mt-3 max-w-3xl text-base leading-7 text-muted">{description}</p>
       </div>
       {action}

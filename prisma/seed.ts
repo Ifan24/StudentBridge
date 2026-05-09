@@ -4,22 +4,40 @@ const prisma = new PrismaClient();
 
 const demoUserId = "demo-user";
 
+const seedUsers = [
+  { id: demoUserId, name: "Maya Chen", email: "maya.chen@studentbridge.test" },
+  { id: "seed-user-arjun", name: "Arjun Kapoor", email: "arjun.kapoor@studentbridge.test" },
+  { id: "seed-user-sarah", name: "Sarah Morgan", email: "sarah.morgan@studentbridge.test" },
+  { id: "seed-user-jason", name: "Jason Lee", email: "jason.lee@studentbridge.test" },
+  { id: "seed-user-priya", name: "Priya Raman", email: "priya.raman@studentbridge.test" },
+  { id: "seed-user-michael", name: "Michael Tran", email: "michael.tran@studentbridge.test" },
+  { id: "seed-user-noor", name: "Noor Ahmed", email: "noor.ahmed@studentbridge.test" },
+  { id: "seed-user-sofia", name: "Sofia Garcia", email: "sofia.garcia@studentbridge.test" },
+  { id: "seed-user-hana", name: "Hana Park", email: "hana.park@studentbridge.test" },
+  { id: "seed-user-ethan", name: "Ethan Wilson", email: "ethan.wilson@studentbridge.test" },
+  { id: "seed-user-mei", name: "Mei Lin", email: "mei.lin@studentbridge.test" }
+];
+
 async function main() {
-  const user = await prisma.user.upsert({
-    where: { id: demoUserId },
-    update: {
-      name: "Ruiqi Li",
-      email: "ruiqili1024@gmail.com"
-    },
-    create: {
-      id: demoUserId,
-      name: "Ruiqi Li",
-      email: "ruiqili1024@gmail.com"
-    }
-  });
+  const users = await Promise.all(
+    seedUsers.map((user) =>
+      prisma.user.upsert({
+        where: { id: user.id },
+        update: {
+          name: user.name,
+          email: user.email
+        },
+        create: user
+      })
+    )
+  );
+
+  const userByEmail = new Map(users.map((user) => [user.email, user]));
+  const demoUser = userByEmail.get("maya.chen@studentbridge.test");
+  if (!demoUser) throw new Error("Demo user was not seeded.");
 
   await prisma.studentProfile.upsert({
-    where: { userId: user.id },
+    where: { userId: demoUser.id },
     update: {
       city: "Sydney",
       institution: "QIBA",
@@ -30,7 +48,7 @@ async function main() {
       preferredEventTypes: ["Networking", "Career", "Workshop", "Community"]
     },
     create: {
-      userId: user.id,
+      userId: demoUser.id,
       city: "Sydney",
       institution: "QIBA",
       studyArea: "Information Technology",
@@ -69,7 +87,12 @@ async function main() {
       city: "Sydney",
       topic: "jobs",
       tags: ["part-time", "resume", "first job"],
-      helpfulCount: 128
+      helpfulCount: 128,
+      authorEmail: "arjun.kapoor@studentbridge.test",
+      comments: [
+        { body: "Start with your campus career service, then check Fair Work before accepting any offer.", authorEmail: "sarah.morgan@studentbridge.test", helpfulCount: 18 },
+        { body: "Keep a simple spreadsheet of roles, dates and links so applications do not blur together.", authorEmail: "maya.chen@studentbridge.test", helpfulCount: 12 }
+      ]
     },
     {
       title: "Best places to study near Town Hall?",
@@ -77,7 +100,12 @@ async function main() {
       city: "Sydney",
       topic: "study-help",
       tags: ["study", "library", "city"],
-      helpfulCount: 96
+      helpfulCount: 96,
+      authorEmail: "sarah.morgan@studentbridge.test",
+      comments: [
+        { body: "Customs House Library is a good first stop, and it is close to trains.", authorEmail: "noor.ahmed@studentbridge.test", helpfulCount: 11 },
+        { body: "The State Library reading rooms are reliable when campus gets noisy.", authorEmail: "hana.park@studentbridge.test", helpfulCount: 8 }
+      ]
     },
     {
       title: "What should I bring to my first networking event?",
@@ -85,7 +113,12 @@ async function main() {
       city: "Melbourne",
       topic: "events",
       tags: ["networking", "confidence", "tech"],
-      helpfulCount: 74
+      helpfulCount: 74,
+      authorEmail: "jason.lee@studentbridge.test",
+      comments: [
+        { body: "Prepare a 20-second intro, one question about the speaker, and your LinkedIn QR code.", authorEmail: "priya.raman@studentbridge.test", helpfulCount: 21 },
+        { body: "Arrive early if you can. It is easier to talk before groups are already formed.", authorEmail: "ethan.wilson@studentbridge.test", helpfulCount: 13 }
+      ]
     },
     {
       title: "Has anyone used a Study NSW support hub?",
@@ -93,7 +126,11 @@ async function main() {
       city: "Sydney",
       topic: "general",
       tags: ["support", "study nsw", "wellbeing"],
-      helpfulCount: 63
+      helpfulCount: 63,
+      authorEmail: "priya.raman@studentbridge.test",
+      comments: [
+        { body: "Use the official Study NSW site to find current support and events.", authorEmail: "maya.chen@studentbridge.test", helpfulCount: 9 }
+      ]
     },
     {
       title: "How do rental inspections work?",
@@ -101,39 +138,133 @@ async function main() {
       city: "Brisbane",
       topic: "accommodation",
       tags: ["renting", "inspection", "housing"],
-      helpfulCount: 52
+      helpfulCount: 52,
+      authorEmail: "michael.tran@studentbridge.test",
+      comments: [
+        { body: "This can depend on state law, so check the official tenancy authority before relying on forum advice.", authorEmail: "hana.park@studentbridge.test", helpfulCount: 15 }
+      ]
+    },
+    {
+      title: "How do you survive group assignments with strangers?",
+      body: "I want to contribute properly but I get nervous speaking first. What process works for group assignments?",
+      city: "Sydney",
+      topic: "study-help",
+      tags: ["group work", "assignments", "confidence"],
+      helpfulCount: 47,
+      authorEmail: "noor.ahmed@studentbridge.test",
+      comments: [
+        { body: "Suggest a shared doc with owners and dates. It feels less awkward when the work is visible.", authorEmail: "sofia.garcia@studentbridge.test", helpfulCount: 14 },
+        { body: "A short kickoff message helps: goal, deadline, preferred meeting time and who writes notes.", authorEmail: "jason.lee@studentbridge.test", helpfulCount: 10 }
+      ]
+    },
+    {
+      title: "Which documents should I bring to a bank appointment?",
+      body: "I booked a student bank appointment and want to be prepared. What documents did you take?",
+      city: "Sydney",
+      topic: "city-life",
+      tags: ["banking", "arrival", "documents"],
+      helpfulCount: 42,
+      authorEmail: "sofia.garcia@studentbridge.test",
+      comments: [
+        { body: "Bring passport, student confirmation and proof of local address if you have it. Check the bank page before going.", authorEmail: "maya.chen@studentbridge.test", helpfulCount: 17 }
+      ]
+    },
+    {
+      title: "How do you track casual work hours around classes?",
+      body: "I am worried about overcommitting. What tools or routines help you balance shifts and study?",
+      city: "Adelaide",
+      topic: "jobs",
+      tags: ["casual work", "time management", "study"],
+      helpfulCount: 39,
+      authorEmail: "ethan.wilson@studentbridge.test",
+      comments: [
+        { body: "Put classes, travel time and assignment blocks in first, then add shifts around that.", authorEmail: "arjun.kapoor@studentbridge.test", helpfulCount: 12 }
+      ]
+    },
+    {
+      title: "Easy ways to meet people after class?",
+      body: "Most people leave quickly after lectures. What has worked for making friends without feeling forced?",
+      city: "Sydney",
+      topic: "wellbeing",
+      tags: ["friends", "confidence", "campus"],
+      helpfulCount: 35,
+      authorEmail: "hana.park@studentbridge.test",
+      comments: [
+        { body: "Ask if anyone is going for coffee before the next class. Small repeated chats add up.", authorEmail: "mei.lin@studentbridge.test", helpfulCount: 13 },
+        { body: "Joining a weekly event is easier than one-off meetups because faces become familiar.", authorEmail: "priya.raman@studentbridge.test", helpfulCount: 9 }
+      ]
+    },
+    {
+      title: "Cheap lunch spots near campus?",
+      body: "Looking for budget-friendly meals in the city that are not too far from public transport.",
+      city: "Sydney",
+      topic: "city-life",
+      tags: ["food", "budget", "campus"],
+      helpfulCount: 32,
+      authorEmail: "mei.lin@studentbridge.test",
+      comments: [
+        { body: "Food courts around Town Hall can be good if you go just before the lunch rush.", authorEmail: "michael.tran@studentbridge.test", helpfulCount: 7 }
+      ]
+    },
+    {
+      title: "Is volunteering useful for an IT portfolio?",
+      body: "I do not have local experience yet. Would a volunteer web project help when applying for internships?",
+      city: "Perth",
+      topic: "jobs",
+      tags: ["portfolio", "volunteering", "internship"],
+      helpfulCount: 30,
+      authorEmail: "arjun.kapoor@studentbridge.test",
+      comments: [
+        { body: "Yes, if you can explain the problem, your role and the outcome. Keep screenshots and a short case study.", authorEmail: "jason.lee@studentbridge.test", helpfulCount: 16 }
+      ]
+    },
+    {
+      title: "Anyone going to beginner-friendly tech meetups this month?",
+      body: "I want to attend but would feel better going with another student. Which events are good for first-timers?",
+      city: "Sydney",
+      topic: "events",
+      tags: ["meetup", "tech", "first-timer"],
+      helpfulCount: 28,
+      authorEmail: "noor.ahmed@studentbridge.test",
+      comments: [
+        { body: "Look for events with a workshop format. They give you something practical to talk about.", authorEmail: "sarah.morgan@studentbridge.test", helpfulCount: 10 }
+      ]
     }
   ];
 
   for (const post of posts) {
     const topic = topicBySlug.get(post.topic);
-    if (!topic) continue;
+    const author = userByEmail.get(post.authorEmail);
+    if (!topic || !author) continue;
+
     const existing = await prisma.forumPost.findFirst({ where: { title: post.title } });
     const data = {
       body: post.body,
       city: post.city,
       tags: post.tags,
       helpfulCount: post.helpfulCount,
-      replyCount: 1,
+      replyCount: post.comments.length,
       topicId: topic.id,
-      authorId: user.id
+      authorId: author.id
     };
     const row = existing
       ? await prisma.forumPost.update({ where: { id: existing.id }, data })
       : await prisma.forumPost.create({ data: { title: post.title, ...data } });
 
-    await prisma.forumComment.upsert({
-      where: { id: `${row.id}-seed-comment` },
-      update: {
-        body: "This is a useful question. Keep personal details private and check official sources when the answer affects work rights, money or safety."
-      },
-      create: {
-        id: `${row.id}-seed-comment`,
-        body: "This is a useful question. Keep personal details private and check official sources when the answer affects work rights, money or safety.",
-        postId: row.id,
-        authorId: user.id
-      }
-    });
+    await prisma.forumComment.deleteMany({ where: { postId: row.id } });
+    for (const [index, comment] of post.comments.entries()) {
+      const commentAuthor = userByEmail.get(comment.authorEmail);
+      if (!commentAuthor) continue;
+      await prisma.forumComment.create({
+        data: {
+          id: `${row.id}-seed-comment-${index + 1}`,
+          body: comment.body,
+          helpfulCount: comment.helpfulCount,
+          postId: row.id,
+          authorId: commentAuthor.id
+        }
+      });
+    }
   }
 
   const jobs = [
@@ -267,7 +398,7 @@ async function main() {
   }
 
   const freePlan = await prisma.subscriptionPlan.findUniqueOrThrow({ where: { slug: "free" } });
-  const existingSubscription = await prisma.userSubscription.findFirst({ where: { userId: user.id, status: "ACTIVE" } });
+  const existingSubscription = await prisma.userSubscription.findFirst({ where: { userId: demoUser.id, status: "ACTIVE" } });
   if (existingSubscription) {
     await prisma.userSubscription.update({
       where: { id: existingSubscription.id },
@@ -276,7 +407,7 @@ async function main() {
   } else {
     await prisma.userSubscription.create({
       data: {
-        userId: user.id,
+        userId: demoUser.id,
         planId: freePlan.id,
         status: "ACTIVE"
       }

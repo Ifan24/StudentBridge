@@ -57,7 +57,7 @@ export const mockForumPosts: ForumPostView[] = [
     replyCount: 1,
     topic: topic("study-help"),
     authorName: "Sarah M.",
-    comments: [{ id: "comment-study-town-hall", body: "Customs House Library is a good first stop, and it is close to trains.", authorName: "Ruiqi Li", helpfulCount: 11, createdAt: new Date().toISOString() }],
+    comments: [{ id: "comment-study-town-hall", body: "Customs House Library is a good first stop, and it is close to trains.", authorName: "Noor Ahmed", helpfulCount: 11, createdAt: new Date().toISOString() }],
     createdAt: new Date("2026-05-06T06:00:00.000Z").toISOString()
   },
   {
@@ -85,7 +85,7 @@ export const mockForumPosts: ForumPostView[] = [
     replyCount: 1,
     topic: topic("general"),
     authorName: "Priya R.",
-    comments: [{ id: "comment-study-nsw", body: "Use the official Study NSW site to find current support and events.", authorName: "Ruiqi Li", helpfulCount: 9, createdAt: new Date().toISOString() }],
+    comments: [{ id: "comment-study-nsw", body: "Use the official Study NSW site to find current support and events.", authorName: "Maya Chen", helpfulCount: 9, createdAt: new Date().toISOString() }],
     createdAt: new Date("2026-05-08T09:20:00.000Z").toISOString()
   },
   {
@@ -99,8 +99,112 @@ export const mockForumPosts: ForumPostView[] = [
     replyCount: 1,
     topic: topic("accommodation"),
     authorName: "Michael T.",
-    comments: [{ id: "comment-rental-inspections", body: "This can depend on state law, so check the official tenancy authority before relying on forum advice.", authorName: "Ruiqi Li", helpfulCount: 15, createdAt: new Date().toISOString() }],
+    comments: [{ id: "comment-rental-inspections", body: "This can depend on state law, so check the official tenancy authority before relying on forum advice.", authorName: "Hana Park", helpfulCount: 15, createdAt: new Date().toISOString() }],
     createdAt: new Date("2026-05-08T11:40:00.000Z").toISOString()
+  },
+  {
+    id: "post-group-assignments",
+    title: "How do you survive group assignments with strangers?",
+    body: "I want to contribute properly but I get nervous speaking first. What process works for group assignments?",
+    city: "Sydney",
+    tags: ["group work", "assignments", "confidence"],
+    status: "ACTIVE",
+    helpfulCount: 47,
+    replyCount: 2,
+    topic: topic("study-help"),
+    authorName: "Noor Ahmed",
+    comments: [
+      { id: "comment-group-assignments-1", body: "Suggest a shared doc with owners and dates. It feels less awkward when the work is visible.", authorName: "Sofia Garcia", helpfulCount: 14, createdAt: new Date().toISOString() },
+      { id: "comment-group-assignments-2", body: "A short kickoff message helps: goal, deadline, preferred meeting time and who writes notes.", authorName: "Jason L.", helpfulCount: 10, createdAt: new Date().toISOString() }
+    ],
+    createdAt: new Date("2026-05-08T13:25:00.000Z").toISOString()
+  },
+  {
+    id: "post-bank-documents",
+    title: "Which documents should I bring to a bank appointment?",
+    body: "I booked a student bank appointment and want to be prepared. What documents did you take?",
+    city: "Sydney",
+    tags: ["banking", "arrival", "documents"],
+    status: "ACTIVE",
+    helpfulCount: 42,
+    replyCount: 1,
+    topic: topic("city-life"),
+    authorName: "Sofia Garcia",
+    comments: [{ id: "comment-bank-documents", body: "Bring passport, student confirmation and proof of local address if you have it. Check the bank page before going.", authorName: "Maya Chen", helpfulCount: 17, createdAt: new Date().toISOString() }],
+    createdAt: new Date("2026-05-08T15:10:00.000Z").toISOString()
+  },
+  {
+    id: "post-casual-hours",
+    title: "How do you track casual work hours around classes?",
+    body: "I am worried about overcommitting. What tools or routines help you balance shifts and study?",
+    city: "Adelaide",
+    tags: ["casual work", "time management", "study"],
+    status: "ACTIVE",
+    helpfulCount: 39,
+    replyCount: 1,
+    topic: topic("jobs"),
+    authorName: "Ethan Wilson",
+    comments: [{ id: "comment-casual-hours", body: "Put classes, travel time and assignment blocks in first, then add shifts around that.", authorName: "Arjun K.", helpfulCount: 12, createdAt: new Date().toISOString() }],
+    createdAt: new Date("2026-05-08T17:30:00.000Z").toISOString()
+  },
+  {
+    id: "post-meet-people",
+    title: "Easy ways to meet people after class?",
+    body: "Most people leave quickly after lectures. What has worked for making friends without feeling forced?",
+    city: "Sydney",
+    tags: ["friends", "confidence", "campus"],
+    status: "ACTIVE",
+    helpfulCount: 35,
+    replyCount: 2,
+    topic: topic("wellbeing"),
+    authorName: "Hana Park",
+    comments: [
+      { id: "comment-meet-people-1", body: "Ask if anyone is going for coffee before the next class. Small repeated chats add up.", authorName: "Mei Lin", helpfulCount: 13, createdAt: new Date().toISOString() },
+      { id: "comment-meet-people-2", body: "Joining a weekly event is easier than one-off meetups because faces become familiar.", authorName: "Priya R.", helpfulCount: 9, createdAt: new Date().toISOString() }
+    ],
+    createdAt: new Date("2026-05-09T01:30:00.000Z").toISOString()
+  },
+  {
+    id: "post-cheap-lunch",
+    title: "Cheap lunch spots near campus?",
+    body: "Looking for budget-friendly meals in the city that are not too far from public transport.",
+    city: "Sydney",
+    tags: ["food", "budget", "campus"],
+    status: "ACTIVE",
+    helpfulCount: 32,
+    replyCount: 1,
+    topic: topic("city-life"),
+    authorName: "Mei Lin",
+    comments: [{ id: "comment-cheap-lunch", body: "Food courts around Town Hall can be good if you go just before the lunch rush.", authorName: "Michael T.", helpfulCount: 7, createdAt: new Date().toISOString() }],
+    createdAt: new Date("2026-05-09T03:15:00.000Z").toISOString()
+  },
+  {
+    id: "post-volunteer-portfolio",
+    title: "Is volunteering useful for an IT portfolio?",
+    body: "I do not have local experience yet. Would a volunteer web project help when applying for internships?",
+    city: "Perth",
+    tags: ["portfolio", "volunteering", "internship"],
+    status: "ACTIVE",
+    helpfulCount: 30,
+    replyCount: 1,
+    topic: topic("jobs"),
+    authorName: "Arjun K.",
+    comments: [{ id: "comment-volunteer-portfolio", body: "Yes, if you can explain the problem, your role and the outcome. Keep screenshots and a short case study.", authorName: "Jason L.", helpfulCount: 16, createdAt: new Date().toISOString() }],
+    createdAt: new Date("2026-05-09T04:50:00.000Z").toISOString()
+  },
+  {
+    id: "post-tech-meetups",
+    title: "Anyone going to beginner-friendly tech meetups this month?",
+    body: "I want to attend but would feel better going with another student. Which events are good for first-timers?",
+    city: "Sydney",
+    tags: ["meetup", "tech", "first-timer"],
+    status: "ACTIVE",
+    helpfulCount: 28,
+    replyCount: 1,
+    topic: topic("events"),
+    authorName: "Noor Ahmed",
+    comments: [{ id: "comment-tech-meetups", body: "Look for events with a workshop format. They give you something practical to talk about.", authorName: "Sarah M.", helpfulCount: 10, createdAt: new Date().toISOString() }],
+    createdAt: new Date("2026-05-09T06:15:00.000Z").toISOString()
   }
 ];
 

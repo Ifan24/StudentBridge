@@ -32,11 +32,14 @@ export async function ensureDemoUser() {
   if (!hasDatabaseUrl()) return null;
   return prisma.user.upsert({
     where: { id: DEMO_USER_ID },
-    update: {},
+    update: {
+      name: "Maya Chen",
+      email: "maya.chen@studentbridge.test"
+    },
     create: {
       id: DEMO_USER_ID,
-      name: "Ruiqi Li",
-      email: "ruiqili1024@gmail.com"
+      name: "Maya Chen",
+      email: "maya.chen@studentbridge.test"
     }
   });
 }

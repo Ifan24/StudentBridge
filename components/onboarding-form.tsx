@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import type { StudentProfileView } from "@/lib/types";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const goalOptions = ["Make friends", "Find work", "Join forum topics", "Find job opportunities", "Volunteer", "Get support"];
 const eventOptions = ["Networking", "Career", "Workshop", "Community", "Free", "Online"];
@@ -43,7 +45,7 @@ export function OnboardingForm({ profile }: { profile: StudentProfileView }) {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[260px_1fr_360px]">
+    <div className="grid gap-6 xl:grid-cols-[240px_minmax(0,1fr)] 2xl:grid-cols-[260px_minmax(0,1fr)_340px]">
       <aside className="panel h-fit p-5">
         <p className="muted-label">Profile steps</p>
         {["City and campus", "Goals", "Languages", "Event types", "Plan preview"].map((step, index) => (
@@ -54,7 +56,7 @@ export function OnboardingForm({ profile }: { profile: StudentProfileView }) {
         ))}
       </aside>
 
-      <section className="panel p-5 lg:p-7">
+      <section className="panel p-5 xl:p-7">
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="City" value={form.city} onChange={(city) => setForm({ ...form, city })} />
           <Field label="Institution" value={form.institution} onChange={(institution) => setForm({ ...form, institution })} />
@@ -66,13 +68,13 @@ export function OnboardingForm({ profile }: { profile: StudentProfileView }) {
         <ChoiceGroup title="Languages" values={languageOptions} selected={form.languages} onToggle={(value) => toggleValue("languages", value)} />
         <ChoiceGroup title="Preferred event types" values={eventOptions} selected={form.preferredEventTypes} onToggle={(value) => toggleValue("preferredEventTypes", value)} />
 
-        <button onClick={saveProfile} className="focus-ring mt-8 inline-flex items-center gap-2 rounded-md bg-bridge px-5 py-3 text-sm font-extrabold text-white">
-          {status === "saving" ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
+        <Button onClick={saveProfile} className="mt-8 h-12 rounded-md px-5 text-sm font-extrabold">
+          {status === "saving" ? <Loader2 data-icon="inline-start" className="animate-spin" /> : <CheckCircle2 data-icon="inline-start" />}
           {status === "saved" ? "Profile saved" : "Save profile"}
-        </button>
+        </Button>
       </section>
 
-      <aside className="panel h-fit p-5">
+      <aside className="panel h-fit p-5 xl:col-span-2 2xl:col-span-1">
         <p className="muted-label">Live first-week plan</p>
         <h3 className="mt-3 text-2xl font-extrabold">Your starter path</h3>
         <div className="mt-5 space-y-4">
@@ -91,7 +93,7 @@ function Field({ label, value, onChange }: { label: string; value: string; onCha
   return (
     <label className="block">
       <span className="muted-label">{label}</span>
-      <input value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-md border border-line px-4 py-3 text-sm outline-none focus:border-bridge" />
+      <Input value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 h-12 rounded-md border-line px-4 text-sm" />
     </label>
   );
 }
@@ -104,9 +106,9 @@ function ChoiceGroup({ title, values, selected, onToggle }: { title: string; val
         {values.map((value) => {
           const active = selected.includes(value);
           return (
-            <button key={value} type="button" onClick={() => onToggle(value)} className={`focus-ring rounded-md border px-3 py-2 text-sm font-bold ${active ? "border-bridge bg-blue-50 text-bridge" : "border-line bg-white text-muted"}`}>
+            <Button key={value} type="button" variant={active ? "secondary" : "outline"} onClick={() => onToggle(value)} className={`rounded-md border px-3 py-2 text-sm font-bold ${active ? "border-bridge bg-blue-50 text-bridge" : "border-line bg-white text-muted"}`}>
               {value}
-            </button>
+            </Button>
           );
         })}
       </div>

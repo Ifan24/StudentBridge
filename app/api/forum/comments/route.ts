@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       comment: {
         id: `local-comment-${Date.now()}`,
         body: payload.body,
-        authorName: "Ruiqi Li",
+        authorName: "Maya Chen",
         helpfulCount: 0,
         createdAt: new Date().toISOString()
       },
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
       comment: {
         id: `local-comment-${Date.now()}`,
         body: payload.body,
-        authorName: "Ruiqi Li",
+        authorName: "Maya Chen",
         helpfulCount: 0,
         createdAt: new Date().toISOString()
       },

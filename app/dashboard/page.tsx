@@ -24,8 +24,8 @@ export default async function DashboardPage() {
         action={<Link className="focus-ring rounded-md bg-bridge px-5 py-3 text-sm font-extrabold text-white" href="/onboarding">Update profile</Link>}
       />
 
-      <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <section className="panel p-5 lg:p-7">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
+        <section className="panel p-5 xl:p-7">
           <p className="muted-label">First-week plan</p>
           <h2 className="mt-2 text-2xl font-extrabold">Recommended next actions</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -36,7 +36,7 @@ export default async function DashboardPage() {
           </div>
         </section>
 
-        <aside className="panel p-5 lg:p-7">
+        <aside className="panel p-5 xl:p-7">
           <p className="muted-label">Profile snapshot</p>
           <h2 className="mt-2 text-2xl font-extrabold">{profile.city} · {profile.studyArea}</h2>
           <div className="mt-5 flex flex-wrap gap-2">

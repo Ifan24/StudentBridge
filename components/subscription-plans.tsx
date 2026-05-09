@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { CheckCircle2, Gauge, Loader2, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import type { SubscriptionStateView } from "@/lib/types";
 import { Pill } from "@/components/ui";
+import { Button } from "@/components/ui/button";
 
 export function SubscriptionPlans({ state }: { state: SubscriptionStateView }) {
   const [activePlanSlug, setActivePlanSlug] = useState(state.activePlanSlug);
@@ -53,16 +54,16 @@ export function SubscriptionPlans({ state }: { state: SubscriptionStateView }) {
                   </li>
                 ))}
               </ul>
-              <button
+              <Button
                 onClick={() => choosePlan(plan.slug)}
                 disabled={active || Boolean(savingPlan)}
-                className={`focus-ring mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-extrabold ${
+                className={`mt-6 h-12 w-full rounded-md px-4 text-sm font-extrabold ${
                   active ? "bg-eucalypt text-white" : "bg-bridge text-white hover:bg-blue-700"
                 } disabled:cursor-default disabled:opacity-80`}
               >
-                {savingPlan === plan.slug ? <Loader2 className="h-4 w-4 animate-spin" /> : active ? <CheckCircle2 className="h-4 w-4" /> : <Sparkles className="h-4 w-4" />}
+                {savingPlan === plan.slug ? <Loader2 data-icon="inline-start" className="animate-spin" /> : active ? <CheckCircle2 data-icon="inline-start" /> : <Sparkles data-icon="inline-start" />}
                 {active ? "Current plan" : plan.priceMonthlyCents === 0 ? "Switch to Free" : "Choose plan"}
-              </button>
+              </Button>
             </article>
           );
         })}

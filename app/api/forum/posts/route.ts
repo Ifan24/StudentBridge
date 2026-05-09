@@ -77,7 +77,7 @@ function localPostResponse(payload: z.infer<typeof postSchema>, status: "ACTIVE"
       helpfulCount: 0,
       replyCount: 0,
       topic,
-      authorName: "Ruiqi Li",
+      authorName: "Maya Chen",
       comments: [],
       createdAt: new Date().toISOString()
     },

@@ -4,6 +4,8 @@ import { FormEvent, useState } from "react";
 import { Bot, Loader2, Send, ShieldCheck, Sparkles } from "lucide-react";
 import type { AiResponse } from "@/lib/types";
 import { Pill } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 const intents = [
   { value: "onboardingPlan", label: "Starter plan" },
@@ -34,8 +36,8 @@ export function AiGuide() {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_420px]">
-      <section className="panel p-5 lg:p-7">
+    <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px] 2xl:grid-cols-[minmax(0,1fr)_420px]">
+      <section className="panel p-5 xl:p-7">
         <div className="flex items-center gap-3">
           <div className="grid h-12 w-12 place-items-center rounded-full bg-bridge text-white">
             <Bot className="h-6 w-6" />
@@ -48,18 +50,18 @@ export function AiGuide() {
 
         <div className="mt-6 flex flex-wrap gap-2">
           {intents.map((item) => (
-            <button key={item.value} onClick={() => setIntent(item.value)} className={`focus-ring rounded-md border px-4 py-2 text-sm font-extrabold ${intent === item.value ? "border-bridge bg-blue-50 text-bridge" : "border-line text-muted"}`}>
+            <Button key={item.value} type="button" variant={intent === item.value ? "secondary" : "outline"} onClick={() => setIntent(item.value)} className={`rounded-md px-4 py-2 text-sm font-extrabold ${intent === item.value ? "bg-blue-50 text-bridge" : "border-line text-muted"}`}>
               {item.label}
-            </button>
+            </Button>
           ))}
         </div>
 
         <form onSubmit={submit} className="mt-6">
-          <textarea name="message" required minLength={3} placeholder="Tell StudentBridge what you need help with..." className="min-h-48 w-full rounded-md border border-line px-4 py-4 text-sm leading-6 outline-none focus:border-bridge" />
-          <button className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-bridge px-5 py-3 text-sm font-extrabold text-white">
-            {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+          <Textarea name="message" required minLength={3} placeholder="Tell StudentBridge what you need help with..." className="min-h-48 rounded-md border-line px-4 py-4 text-sm leading-6" />
+          <Button className="mt-4 h-12 rounded-md px-5 text-sm font-extrabold">
+            {loading ? <Loader2 data-icon="inline-start" className="animate-spin" /> : <Send data-icon="inline-start" />}
             Ask AI Guide
-          </button>
+          </Button>
         </form>
 
         {response && (
