@@ -2,6 +2,11 @@
 
 StudentBridge is a team project for a Next.js web app that helps international students in Australia build trusted social, academic, career and community networks.
 
+## Live demo
+
+- App: https://student-bridge-nu.vercel.app/dashboard
+- Suggested walkthrough: landing page -> signup/login -> onboarding -> dashboard -> events -> forum -> jobs -> AI Guide -> premium subscription.
+
 ## Team
 
 - Marketing: Chengzhi
