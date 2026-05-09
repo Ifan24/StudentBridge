@@ -26,6 +26,7 @@ const iconMap = {
   Forum: MessageCircle,
   Jobs: BriefcaseBusiness,
   Support: CircleHelp,
+  Saved: Bookmark,
   "AI Guide": Bot,
   Premium: Rocket
 };

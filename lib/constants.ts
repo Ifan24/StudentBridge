@@ -6,6 +6,7 @@ export const appNav = [
   { href: "/forum", label: "Forum" },
   { href: "/jobs", label: "Jobs" },
   { href: "/support", label: "Support" },
+  { href: "/saved", label: "Saved" },
   { href: "/ai", label: "AI Guide" },
   { href: "/subscription", label: "Premium" }
 ];

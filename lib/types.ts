@@ -86,6 +86,11 @@ export type SupportResourceView = {
 
 export type SavedItemType = "event" | "post" | "job" | "support";
 
+export type SavedItemSummary = {
+  total: number;
+  counts: Record<SavedItemType, number>;
+};
+
 export type SubscriptionPlanView = {
   id: string;
   slug: string;

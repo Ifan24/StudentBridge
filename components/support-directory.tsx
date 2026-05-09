@@ -98,7 +98,7 @@ export function SupportDirectory({ resources, initialSavedIds = [] }: { resource
             ))}
           </div>
         ) : (
-          <EmptyState title="No resources found" body="Try a different category or search term to browse the demo support directory." />
+          <EmptyState title="No resources found" body="Try a different category or search term to browse the support directory." />
         )}
       </section>
 

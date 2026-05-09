@@ -174,7 +174,7 @@ export function ForumBoard({ topics, posts, initialSavedIds = [] }: { topics: Fo
               <ThreadCard key={post.id} post={post} saved={saved.has(post.id)} reported={reported.has(post.id)} onVote={() => vote(post.id)} onSave={() => toggleSaved(post.id)} onReport={() => report(post.id)} onComment={addComment} />
             ))
           ) : (
-            <EmptyState title="No forum posts found" body="Try a different topic, sort or search term to browse the demo forum." />
+            <EmptyState title="No forum posts found" body="Try a different topic, sort or search term to browse the forum." />
           )}
         </div>
         <Pagination page={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} label={`Page ${currentPage} of ${totalPages}`} />

@@ -138,7 +138,7 @@ export function JobsBoard({ jobs, initialSavedIds = [] }: { jobs: JobOpportunity
               </article>
             ))
           ) : (
-            <EmptyState title="No jobs found" body="Try a different city, work type or keyword to browse the demo job board." />
+            <EmptyState title="No jobs found" body="Try a different city, work type or keyword to browse the job board." />
           )}
         </div>
         <Pagination page={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} label={`Page ${currentPage} of ${totalPages}`} />

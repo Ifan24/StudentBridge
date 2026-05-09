@@ -123,7 +123,7 @@ export function EventsBoard({ events, initialSavedIds = [] }: { events: EventIte
             </div>
           ) : (
             <div className="p-5">
-              <EmptyState title="No events found" body="Try another category, price filter or search term to browse the demo event directory." />
+              <EmptyState title="No events found" body="Try another category, price filter or search term to browse the event directory." />
             </div>
           )}
         </div>
