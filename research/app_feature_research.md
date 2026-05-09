@@ -71,24 +71,21 @@ StudentBridge value:
 - Topic feeds by interest, city and study area
 - Saved posts, replies and event reminders
 
-### Sponsor or Partner
+### Premium Subscriber
 
 Examples:
 
-- Education providers
-- Employers and recruiters
-- Study hubs
-- Local councils
-- Professional associations
-- Student accommodation providers
-- Local venues and businesses
+- Students actively searching for work
+- Students who want more AI coaching
+- Students who need structured weekly plans
+- Students preparing for networking or interviews
 
 StudentBridge value:
 
-- Promote verified events
-- Reach international students by city and interest
-- Track registrations, attendance and engagement
-- Build trust with students through verified partner profiles
+- More AI usage for plans, pitches and job-fit explanations
+- Saved job folders and alerts
+- Resume, LinkedIn and networking intro coaching
+- Weekly progress plan based on events, forum threads and jobs
 
 ## MVP Feature Set
 
@@ -184,7 +181,7 @@ MVP version:
 Safety:
 
 - Students choose when to share application interest or contact details.
-- Students control what profile information is visible to employers or partners.
+- Students control what profile information is visible to employers.
 - No exact address sharing.
 - Report/block controls.
 
@@ -233,27 +230,24 @@ AI opportunity:
 
 - Ask a few questions and route the student to the right official support category.
 
-### 7. Partner/Sponsor Profiles
+### 7. Premium Subscription
 
 Purpose:
 
-- Give sponsors a credible presence without turning the app into generic ads.
+- Create a student-paid revenue model without selling access to student attention or data.
 
-Profile fields:
+MVP plan tiers:
 
-- Organisation name
-- Verified status
-- Category
-- City
-- Events or opportunities
-- Contact link
-- Student-friendly offer or value
+- Free: events, forum, jobs, support resources and 5 AI guide uses per month.
+- Plus: higher AI usage, job alerts, saved folders and weekly plans.
+- Pro: heavier AI coaching for resumes, introductions, interview preparation and job-fit reasoning.
 
-MVP sponsor actions:
+MVP subscription actions:
 
-- Create event
-- Promote event
-- View basic engagement count
+- View plan comparison.
+- Simulate upgrading or downgrading the demo account.
+- Show AI usage remaining for the month.
+- Gate premium AI actions behind the selected plan.
 
 ## AI Feature Roadmap
 
@@ -281,11 +275,11 @@ Ruiqi's AI ownership can focus on features that make the app feel smarter withou
 
 1. Multilingual event summaries
 2. Smart job/opportunity recommendation explanation
-3. Sponsor event quality checker
+3. Premium job-search quality checker
 4. AI-generated event tags from event descriptions
 5. AI forum post summariser and duplicate-question detector
 6. Weekly networking plan
-7. Analytics summary for sponsors
+7. Subscription usage and retention summary
 
 ## Safety and Privacy Requirements
 
@@ -296,7 +290,6 @@ Minimum safety features:
 - User reporting
 - Block/mute controls
 - Event host verification
-- Visible partner verification status
 - No exact address sharing in student profiles
 - Opt-in messaging or application-interest sharing
 - Clear community standards
@@ -306,8 +299,8 @@ Privacy principles:
 
 - Collect only what is needed for recommendations, saved items, forum participation and application-interest workflows.
 - Keep private profile details off public pages.
-- Do not expose personal student data to sponsors.
-- Use aggregated analytics for sponsor dashboards.
+- Do not expose personal student data to advertisers, data brokers or employers.
+- Use subscription analytics only for product usage and plan health.
 - Keep API secrets server-side.
 - Do not put private keys in `NEXT_PUBLIC_` environment variables.
 
@@ -317,34 +310,37 @@ Core entities:
 
 - `User`
 - `StudentProfile`
-- `Organisation`
-- `Event`
+- `EventCache`
 - `ForumTopic`
 - `ForumPost`
 - `ForumComment`
-- `Opportunity`
+- `JobOpportunity`
+- `SupportResource`
+- `SubscriptionPlan`
+- `UserSubscription`
 - `SavedItem`
-- `Registration`
+- `AiInteraction`
 - `Report`
 - `AiRecommendation`
 
 Important relationships:
 
 - A user has one student profile.
-- An organisation can host many events.
-- A student can save and register for many events.
+- Event data is cached from City of Sydney and refreshed on a short TTL.
+- A student can save events, jobs, forum posts and support resources.
 - A forum topic can have many posts.
 - A post belongs to a user and can have many comments.
-- An opportunity belongs to an organisation or partner and can be saved or opened by many students.
-- Reports can target users, events, posts, comments or organisations.
+- A job opportunity can be saved or opened by many students.
+- A user has one active subscription tier in the MVP.
+- Reports can target forum posts, comments, jobs, events or support resources.
 
 ## Role Map
 
-- Marketing - Chengzhi: brand, launch copy, user acquisition, sponsor positioning.
-- Back-end - Siqi: database, API routes, authentication, sponsor/event data.
+- Marketing - Chengzhi: brand, launch copy, user acquisition, premium positioning.
+- Back-end - Siqi: database, API routes, authentication, subscription/event data.
 - Front-end - Johnny: Next.js UI, responsive screens, components, interaction states.
 - Data Analytics and Research: market evidence, feature validation, survey analysis, metrics.
-- Finance - Santosh: pricing, sponsor packages, revenue assumptions, cost model.
+- Finance - Santosh: subscription pricing, revenue assumptions, cost model.
 - Project Coordination - Sabina: scope, timeline, task tracking, presentation flow.
 - AI - Ruiqi: AI assistant, recommendations, structured outputs, AI safety and prompt design.
 
@@ -370,7 +366,7 @@ Suggested routes:
 - `/jobs` - job board finding
 - `/support` - support-service directory
 - `/ai` - StudentBridge assistant
-- `/partners` - sponsor/partner information
+- `/subscription` - premium plans and AI usage
 
 Prototype data approach:
 
@@ -390,13 +386,13 @@ Student metrics:
 - Support-service clicks
 - Repeat weekly visits
 
-Sponsor metrics:
+Subscription metrics:
 
-- Event impressions
-- Event saves
-- Registration intent
-- Profile clicks
-- Cost per engaged student
+- Free to paid conversion
+- AI usage per plan
+- Upgrade and downgrade clicks
+- Weekly active premium users
+- Churn-risk signals such as no AI use after upgrade
 
 AI metrics:
 
